@@ -1,0 +1,1 @@
+export const actionInit = () => {type: 'INIT'};

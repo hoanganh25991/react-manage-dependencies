@@ -6,15 +6,18 @@
     "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
     "redux": "^3.7.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "@types/react-addons-update": "^0.14.17",
     "husky": "^0.13.4",
     "lint-staged": "^4.0.0",
     "prettier": "^1.4.4",
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "typescript": "^2.3.4"
   },
   "scripts": {
     "start": "react-scripts start",

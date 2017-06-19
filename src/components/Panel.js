@@ -1,4 +1,7 @@
 import React, { PureComponent } from "react"
+import CodeMirror from "react-codemirror"
+import "codemirror/lib/codemirror.css"
+import "codemirror/mode/javascript/javascript"
 
 export default class Panel extends PureComponent {
   constructor(props) {
@@ -29,7 +32,7 @@ export default class Panel extends PureComponent {
         try {
           let packageObj = JSON.parse(packageJson)
           // Delete unused
-          this.setState({ packageObj })
+          this.setState({ packageObj, packageJson })
         } catch (err) {
           console.log(err)
         }
@@ -61,7 +64,11 @@ export default class Panel extends PureComponent {
   }
 
   render() {
-    let { packageObj } = this.state
+    let { packageObj, packageJson } = this.state
+    let options = {
+      lineNumbers: true,
+      mode: "javascript"
+    }
     return (
       <div>
         <button onClick={this.loadDatabase}>load database</button>
@@ -75,6 +82,11 @@ export default class Panel extends PureComponent {
                   {this.loadFromSub(packageObj[key])}
                 </div>
               )}
+            </div>
+          : null}
+        {packageObj
+          ? <div>
+              <CodeMirror value={packageJson} options={options} />
             </div>
           : null}
       </div>

@@ -1,20 +1,4 @@
 import React, { PureComponent } from "react"
-import JSONTree from "react-json-tree"
-import JSONTree2 from "react-json-inspector"
-
-// or use the shorthand
-import Inspector, { ObjectInspector, TableInspector } from "react-inspector"
-
-import { ObjectLabel } from "react-inspector"
-import { ObjectRootLabel } from "react-inspector"
-
-console.log(ObjectLabel, ObjectRootLabel)
-
-const MyComponent = ({ data }) =>
-  <div>
-    <Inspector data={data} />
-    {/* <Inspector table data={data} /> */}
-  </div>
 
 export default class Panel extends PureComponent {
   constructor(props) {
@@ -45,13 +29,35 @@ export default class Panel extends PureComponent {
         try {
           let packageObj = JSON.parse(packageJson)
           // Delete unused
-          //['name', 'version', 'private'].forEach(key => delete packageObj[key])
           this.setState({ packageObj })
         } catch (err) {
           console.log(err)
         }
       })
     }
+  }
+
+  loadFromSub = data => {
+    let isObj = typeof data === "object"
+    let hasProps = isObj && Object.keys(data).length > 0
+    let isStr = typeof data == "string"
+
+    if (isStr) {
+      return <span>{data}</span>
+    }
+
+    return (
+      <div>
+        {isObj && hasProps
+          ? Object.keys(data).map(key =>
+              <div style={{ paddingLeft: 40 }} {...{ key }}>
+                <input type="checkbox" {...{ key }} />
+                <span><b>{key}</b> {data[key]}</span>
+              </div>
+            )
+          : null}
+      </div>
+    )
   }
 
   render() {
@@ -63,19 +69,10 @@ export default class Panel extends PureComponent {
         <input type="file" onClick={this.importPackageJson} onChange={this.readPackageJson} />
         {packageObj
           ? <div>
-              {/* <JSONTree {...{data:packageObj}} /> */}
-              {/* <JSONTree2 {...{data:packageObj}} /> */}
-              <MyComponent {...{ data: packageObj }} />
-            </div>
-          : null}
-        {packageObj
-          ? <div>
               {Object.keys(packageObj).map(key =>
                 <div {...{ key }}>
-                  <h1>{key}</h1>
-                  <ul>
-                    {}
-                  </ul>
+                  <span><input type="checkbox" /><b>{key}</b> </span>
+                  {this.loadFromSub(packageObj[key])}
                 </div>
               )}
             </div>

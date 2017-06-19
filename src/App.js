@@ -5,6 +5,7 @@ import DependencyList from "./components/DependencyList"
 import HoiPanel from "./containers/HoiPanel"
 import { actionLoadDatabase } from "./actions"
 import CodeEditor from "./components/CodeEditor"
+import CreateGroup from "./components/CreateGroup"
 
 class App extends Component {
   componentDidMount() {
@@ -14,10 +15,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HoiPanel />
         <DependencyList />
-        <div className="App-logo">Hello world</div>
-        <CodeEditor />
+        <CreateGroup />
       </div>
     )
   }

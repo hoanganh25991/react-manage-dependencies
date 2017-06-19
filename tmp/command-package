@@ -1,9 +1,0 @@
-yarn add --dev prettier husky lint-staged flow-bin gh-pages
-yarn add node-sass-chokidar npm-run-all 
-yarn add redux redux-devtools-extension redux-thunk  react-redux 
-yarn add moment
-
-yarn add --dev typescript @types/react-addons-update
-yarn add --dev json-loader
-
-tsc --init

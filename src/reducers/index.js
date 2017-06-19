@@ -15,6 +15,9 @@ export default (state = initalState, action) => {
     case c.LOAD_DATABASE: {
       return loadState()
     }
+    case c.IMPORT_PACKAGE_JSON: {
+      return state
+    }
     default:
       return state
   }

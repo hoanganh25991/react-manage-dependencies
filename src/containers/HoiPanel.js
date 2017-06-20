@@ -5,7 +5,7 @@ import { actionLoadDatabase, actionImportPackageJson } from "../actions"
 const mapStateToProps = null
 const mapActionToProps = dispatch => ({
   actionLoadDatabase: () => dispatch(actionLoadDatabase()),
-  actionImportPackageJson: () => dispatch(actionImportPackageJson())
+  actionImportPackageJson: ({ packageJson }) => dispatch(actionImportPackageJson({ packageJson }))
 })
 
 export default connect(mapStateToProps, mapActionToProps)(Panel)

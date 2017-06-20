@@ -9,16 +9,6 @@ export default class Panel extends PureComponent {
     this.state = {}
   }
 
-  loadDatabase = () => {
-    let { actionLoadDatabase } = this.props
-    actionLoadDatabase()
-  }
-
-  importPackageJson = () => {
-    let { actionImportPackageJson } = this.props
-    actionImportPackageJson()
-  }
-
   readPackageJson = e => {
     let file = e.target.files[0]
     if (file) {
@@ -31,6 +21,9 @@ export default class Panel extends PureComponent {
       packageJsonPromise.then(packageJson => {
         try {
           let packageObj = JSON.parse(packageJson)
+          // Update packageJson to state
+          let { actionImportPackageJson } = this.props
+          actionImportPackageJson({ packageJson })
           // Delete unused
           this.setState({ packageObj, packageJson })
         } catch (err) {
@@ -71,9 +64,8 @@ export default class Panel extends PureComponent {
     }
     return (
       <div>
-        <button onClick={this.loadDatabase}>load database</button>
         <label>import package.json</label>
-        <input type="file" onClick={this.importPackageJson} onChange={this.readPackageJson} />
+        <input type="file" onChange={this.readPackageJson} />
         {packageObj
           ? <div>
               {Object.keys(packageObj).map(key =>

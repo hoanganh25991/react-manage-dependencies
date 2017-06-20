@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
+import HoiApp from "./containers/HoiApp"
 import registerServiceWorker from "./registerServiceWorker"
 
 import { Provider } from "react-redux"
@@ -14,7 +14,7 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMid
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <HoiApp />
   </Provider>,
   document.getElementById("root")
 )

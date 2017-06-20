@@ -13,10 +13,16 @@ const loadState = () => {
 export default (state = initalState, action) => {
   switch (action.type) {
     case c.LOAD_DATABASE: {
+      console.log("load state")
       return loadState()
     }
     case c.IMPORT_PACKAGE_JSON: {
-      return state
+      let { packageJson } = action
+      return { ...state, packageJson }
+    }
+    case c.UPDATE_PACKAGE_JSON: {
+      let { packageJson } = action
+      return { ...state, packageJson }
     }
     default:
       return state

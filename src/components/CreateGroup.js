@@ -29,7 +29,8 @@ export default class CreateGroup extends React.Component {
 
       packageJsonPromise.then(packageJson => {
         try {
-          this.setState({ packageJson })
+          let { actionUpdatePackageJson } = this.props
+          actionUpdatePackageJson({ packageJson })
         } catch (err) {
           console.log(err)
         }
@@ -38,7 +39,8 @@ export default class CreateGroup extends React.Component {
   }
 
   updateCodeMirror = packageJson => {
-    this.setState({ packageJson })
+    let { actionUpdatePackageJson } = this.props
+    actionUpdatePackageJson({ packageJson })
   }
 
   render() {

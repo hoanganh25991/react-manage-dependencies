@@ -1,4 +1,5 @@
 import * as c from "./actionTypes"
+
 export const actionLoadDatabase = () => ({ type: c.LOAD_DATABASE })
 
 export const actionUpdatePackageJson = ({ packageJson }) => ({ type: c.UPDATE_PACKAGE_JSON, packageJson })
@@ -14,9 +15,12 @@ export const actionUpdateSnippet = ({ snippet }) => ({ type: c.UPDATE_SNIPPET, s
 
 export const actionSaveToLocal = () => ({ type: c.SAVE_TO_LOCAL })
 
+export const actionGoToHome = () => ({ type: c.GO_TO_HOME })
+
 export const actionCreateGroup = () => {
   return dispatch => {
     dispatch({ type: c.UPDATE_GROUPS })
     dispatch(actionSaveToLocal())
+    dispatch(actionGoToHome())
   }
 }

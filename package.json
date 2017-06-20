@@ -10,7 +10,8 @@
     "react-codemirror": "git://github.com/skidding/react-codemirror.git#106-fix-update",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
-    "react-router": "*",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
     "redux": "^3.7.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0"

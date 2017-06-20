@@ -1,4 +1,5 @@
 import * as c from "../actions/actionTypes"
+import history from "./history"
 
 const initalState = {
   groupName: "",
@@ -62,6 +63,10 @@ export default (state = initalState, action) => {
     case c.SAVE_TO_LOCAL: {
       // Store
       localStorage.setItem(c.LOCAL_KEY, JSON.stringify(state))
+      return state
+    }
+    case c.GO_TO_HOME: {
+      history.push("")
       return state
     }
     default:

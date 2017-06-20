@@ -18,3 +18,6 @@ export const UPDATE_GROUPS = "UPDATE_GROUPS"
 // Local
 export const SAVE_TO_LOCAL = "SAVE_TO_LOCAL"
 export const LOCAL_KEY = "react-manage-dependencies"
+
+// Move
+export const GO_TO_HOME = "GO_TO_HOME"

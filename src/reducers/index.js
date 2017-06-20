@@ -1,5 +1,4 @@
 import * as c from "../actions/actionTypes"
-import state from "../cache/state.json"
 
 const initalState = {
   groupName: "",
@@ -10,8 +9,14 @@ const initalState = {
 }
 
 const loadState = () => {
-  let isEmptyObj = Object.keys(state).length == 0
-  return isEmptyObj ? initalState : state
+  let stateJson = localStorage.getItem(c.LOCAL_KEY)
+  try {
+    let state = JSON.parse(stateJson)
+    let isEmpty = Object.keys(state).length == 0
+    return isEmpty ? initalState : state
+  } catch (err) {
+    return initalState
+  }
 }
 
 export default (state = initalState, action) => {
@@ -54,6 +59,11 @@ export default (state = initalState, action) => {
       return { ...state, groups }
     }
 
+    case c.SAVE_TO_LOCAL: {
+      // Store
+      localStorage.setItem(c.LOCAL_KEY, JSON.stringify(state))
+      return state
+    }
     default:
       return state
   }

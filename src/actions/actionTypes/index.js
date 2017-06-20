@@ -14,3 +14,7 @@ export const UPDATE_SNIPPET = "UPDATE_SNIPPET"
 
 // Group
 export const CREATE_GROUP = "CREATE_GROUP"
+
+// Local
+export const SAVE_TO_LOCAL = "SAVE_TO_LOCAL"
+export const LOCAL_KEY = "react-manage-dependencies"

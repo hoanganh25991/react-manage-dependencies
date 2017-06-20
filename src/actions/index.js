@@ -12,4 +12,11 @@ export const actionUpdateGroupName = ({ groupName }) => ({ type: c.UPDATE_GROUP_
 
 export const actionUpdateSnippet = ({ snippet }) => ({ type: c.UPDATE_SNIPPET, snippet })
 
-export const actionCreateGroup = () => ({ type: c.CREATE_GROUP })
+export const actionSaveToLocal = () => ({ type: c.SAVE_TO_LOCAL })
+
+export const actionCreateGroup = () => {
+  return dispatch => {
+    dispatch({ type: c.CREATE_GROUP })
+    dispatch(actionSaveToLocal())
+  }
+}

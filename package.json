@@ -25,9 +25,8 @@
     "typescript": "^2.3.4"
   },
   "scripts": {
-    "init": "babel-node scripts",
     "react-start": "react-scripts start",
-    "start": "npm-run-all -s init react-start",
+    "start": "npm-run-all -s react-start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

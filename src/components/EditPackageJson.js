@@ -32,7 +32,7 @@ export default class EditPackageJson extends React.Component {
                   <input
                     type="checkbox"
                     checked={chosen}
-                    onClick={this.togglePickWholeLevel1({ [level1Key]: packageObj[level1Key] })}
+                    onChange={this.togglePickWholeLevel1({ [level1Key]: packageObj[level1Key] })}
                   />
                   <b>{level1Key}</b> {level1Val}
                 </div>
@@ -45,7 +45,7 @@ export default class EditPackageJson extends React.Component {
                   <input
                     type="checkbox"
                     checked={chosen}
-                    onClick={this.togglePickWholeLevel1({ [level1Key]: packageObj[level1Key] })}
+                    onChange={this.togglePickWholeLevel1({ [level1Key]: packageObj[level1Key] })}
                   />
                   <b>{level1Key}</b>
                 </div>
@@ -57,7 +57,7 @@ export default class EditPackageJson extends React.Component {
                         <input
                           type="checkbox"
                           checked={chosen}
-                          onClick={this.togglePickUpLevel2(level1Key, {
+                          onChange={this.togglePickUpLevel2(level1Key, {
                             [level2Key]: packageObj[level1Key][level2Key]
                           })}
                         />

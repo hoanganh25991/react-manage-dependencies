@@ -68,31 +68,31 @@ export default class CreateGroup extends React.Component {
             let chosen = Boolean(packageSelected[key])
             if (isStr) {
               return (
-                <p {...{ key }}>
+                <div {...{ key }}>
                   <input type="checkbox" checked={chosen} onClick={this.togglePickUp({ [key]: packageObj[key] })} />
                   <b>{key}</b> {val}
-                </p>
+                </div>
               )
             }
 
             return (
               <div {...{ key }}>
-                <p>
+                <div>
                   <input type="checkbox" checked={chosen} onClick={this.togglePickUp({ [key]: packageObj[key] })} />
                   <b>{key}</b>
-                </p>
+                </div>
                 <ul>
                   {Object.keys(val).map(valKey => {
                     let chosen = Boolean(packageSelected[key] && packageSelected[key][valKey])
                     return (
-                      <li {...{ key: valKey }}>
+                      <div {...{ key: valKey }}>
                         <input
                           type="checkbox"
                           checked={chosen}
                           onClick={this.togglePickUp({ [key]: { [valKey]: packageObj[key][valKey] } }, key)}
                         />
                         <b>{valKey}</b> {val[valKey]}
-                      </li>
+                      </div>
                     )
                   })}
                 </ul>

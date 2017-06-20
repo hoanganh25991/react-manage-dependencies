@@ -78,15 +78,65 @@ export default class EditPackageJson extends React.Component {
 
   togglePickWholeLevel1 = level1 => () => {
     let { packageSelected: curr = {}, actionUpdatePackageSelected } = this.props
-    let packageSelected = { ...curr, ...level1 }
+    // Check if level1 already selected
+    // let {obj: [level1Key]} = level1;
+    let level1Key = Object.keys(level1)[0]
+    let alreadyExist = curr[level1Key]
+
+    let packageSelected
+
+    if (alreadyExist) {
+      packageSelected = Object.keys(curr).reduce((carry, key) => {
+        if (key === level1Key) {
+          return carry
+        }
+        carry[key] = curr[key]
+        return carry
+      }, {})
+    } else {
+      packageSelected = { ...curr, ...level1 }
+    }
     actionUpdatePackageSelected({ packageSelected })
   }
 
   togglePickUpLevel2 = (level1Key, level2) => () => {
     let { packageSelected: curr = {}, actionUpdatePackageSelected } = this.props
     let currLevel1 = curr[level1Key] || {}
-    let level1 = { ...currLevel1, ...level2 }
-    let packageSelected = { ...curr, ...{ [level1Key]: level1 } }
+    // Check if level2 exist
+    let level2Key = Object.keys(level2)[0]
+    let alreadyExist = currLevel1[level2Key]
+
+    let level1
+
+    if (alreadyExist) {
+      level1 = Object.keys(currLevel1).reduce((carry, key) => {
+        if (key === level2Key) {
+          return carry
+        }
+
+        carry[key] = currLevel1[key]
+        return carry
+      }, {})
+    } else {
+      level1 = { ...currLevel1, ...level2 }
+    }
+
+    let isLevel1Empty = Object.keys(level1).length == 0
+
+    let packageSelected
+
+    if (isLevel1Empty) {
+      packageSelected = Object.keys(curr).reduce((carry, key) => {
+        if (key === level1Key) {
+          return carry
+        }
+        carry[key] = curr[key]
+        return carry
+      }, {})
+    } else {
+      packageSelected = { ...curr, ...{ [level1Key]: level1 } }
+    }
+
     actionUpdatePackageSelected({ packageSelected })
   }
 

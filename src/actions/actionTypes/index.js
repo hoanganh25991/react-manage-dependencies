@@ -11,3 +11,6 @@ export const UPDATE_GROUP_NAME = "UPDATE_GROUP_NAME"
 
 // Snippet
 export const UPDATE_SNIPPET = "UPDATE_SNIPPET"
+
+// Group
+export const CREATE_GROUP = "CREATE_GROUP"

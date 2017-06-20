@@ -37,7 +37,10 @@ export default class CreateGroup extends React.Component {
     actionUpdateSnippet({ snippet })
   }
 
-  createGroup = () => {}
+  createGroup = () => {
+    let { actionCreateGroup } = this.props
+    actionCreateGroup()
+  }
 
   render() {
     let { groupName, packageJson } = this.state

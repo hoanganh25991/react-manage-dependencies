@@ -4,7 +4,9 @@ import state from "../cache/state.json"
 const initalState = {
   groupName: "",
   packageJson: "",
-  packageSelected: {}
+  packageSelected: {},
+  snippet: "",
+  groups: []
 }
 
 const loadState = () => {
@@ -40,6 +42,16 @@ export default (state = initalState, action) => {
     case c.UPDATE_SNIPPET: {
       let { snippet } = action
       return { ...state, snippet }
+    }
+    case c.CREATE_GROUP: {
+      // Get out current group info
+      let { groupName, packageSelected, snippet } = state
+      let { groups: currGroups } = state
+
+      let groups = [...currGroups, { groupName, packageSelected, snippet }]
+      // Update exist groups
+      // Reset for create new one
+      return { ...state, groups }
     }
 
     default:

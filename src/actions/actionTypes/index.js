@@ -8,3 +8,6 @@ export const UPDATE_PACKAGE_SELECTED = "UPDATE_PACKAGE_SELECTED"
 
 // Group name
 export const UPDATE_GROUP_NAME = "UPDATE_GROUP_NAME"
+
+// Snippet
+export const UPDATE_SNIPPET = "UPDATE_SNIPPET"

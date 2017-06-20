@@ -9,3 +9,4 @@ export const actionUpdatePackageSelected = ({ packageSelected }) => ({
 })
 
 export const actionUpdateGroupName = ({ groupName }) => ({ type: c.UPDATE_GROUP_NAME, groupName })
+export const actionUpdateSnippet = ({ snippet }) => ({ type: c.UPDATE_SNIPPET, snippet })

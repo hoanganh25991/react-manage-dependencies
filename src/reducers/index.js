@@ -29,6 +29,19 @@ export default (state = initalState, action) => {
       let { packageSelected } = action
       return { ...state, packageSelected }
     }
+
+    // Handle group name
+    case c.UPDATE_GROUP_NAME: {
+      let { groupName } = action
+      return { ...state, groupName }
+    }
+
+    // Handle snippet
+    case c.UPDATE_SNIPPET: {
+      let { snippet } = action
+      return { ...state, snippet }
+    }
+
     default:
       return state
   }

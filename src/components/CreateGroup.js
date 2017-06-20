@@ -1,6 +1,8 @@
 import React from "react"
 import * as t from "../styles"
 import HoiEditPackageJson from "../containers/HoiEditPackageJson"
+import CodeMirror from "react-codemirror"
+import "codemirror/lib/codemirror.css"
 
 export default class CreateGroup extends React.Component {
   constructor(props) {
@@ -30,16 +32,32 @@ export default class CreateGroup extends React.Component {
     }
   }
 
+  updateSnippet = snippet => {
+    let { actionUpdateSnippet } = this.props
+    actionUpdateSnippet({ snippet })
+  }
+
+  createGroup = () => {}
+
   render() {
     let { groupName, packageJson } = this.state
     return (
       <div style={t.flexColumn}>
         <h1>Create group</h1>
-        <h3>Group name</h3>
+        <b>Group name</b>
         <input type="text" value={groupName} onChange={this.updateGroupName} />
-        <h3>Load package.json</h3>
+        <b>Load package.json</b>
         <input type="file" onChange={this.updatePackageJson} />
         <HoiEditPackageJson packageJson={packageJson} />
+        <b>Snippet</b>
+        <CodeMirror
+          value={"Type in your snippet"}
+          onChange={this.updateSnippet}
+          options={{ lineNumbers: true, mode: "javascript" }}
+        />
+        <div>
+          <button onClick={this.createGroup}>Create</button>
+        </div>
       </div>
     )
   }

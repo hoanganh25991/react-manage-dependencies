@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import CreateGroup from "../components/CreateGroup"
-import { actionUpdatePackageJson, actionUpdateGroupName } from "../actions"
+import { actionUpdatePackageJson, actionUpdateGroupName, actionUpdateSnippet } from "../actions"
 import { getPackageGroupName, getPackageJson } from "../selectors"
 
 type PropsState = {
@@ -19,12 +19,14 @@ const mapStateToProps = (state): PropsState => {
 
 type PropsAction = {
   actionUpdatePackageJson: Function,
-  actionUpdateGroupName: Function
+  actionUpdateGroupName: Function,
+  actionUpdateSnippet: Function
 }
 
 const mapActionToProps = (dispatch): PropsAction => ({
   actionUpdatePackageJson: ({ packageJson }) => dispatch(actionUpdatePackageJson({ packageJson })),
-  actionUpdateGroupName: ({ groupName }) => dispatch(actionUpdateGroupName({ groupName }))
+  actionUpdateGroupName: ({ groupName }) => dispatch(actionUpdateGroupName({ groupName })),
+  actionUpdateSnippet: ({ snippet }) => dispatch(actionUpdateSnippet({ snippet }))
 })
 
 export default connect(mapStateToProps, mapActionToProps)(CreateGroup)

@@ -146,6 +146,11 @@ export default class EditPackageJson extends React.Component {
     this.setState({ mode })
   }
 
+  resetSelected = () => {
+    let { actionUpdatePackageSelected } = this.props
+    actionUpdatePackageSelected({})
+  }
+
   updateCodeMirror = newCode => {
     let packageJson = newCode
     let { actionUpdatePackageJson } = this.props
@@ -158,7 +163,8 @@ export default class EditPackageJson extends React.Component {
     let isViewMode = mode === "view"
     return (
       <div>
-        <button onClick={this.toggleViewMode}>{"<>"}</button>
+        <button onClick={this.toggleViewMode}>{"switch view"}</button>
+        <button onClick={this.resetSelected}>{"reset selected"}</button>
         <div style={{ ...t.flexRow }}>
           {isViewMode
             ? <div style={{ ...t.flex1 }}>

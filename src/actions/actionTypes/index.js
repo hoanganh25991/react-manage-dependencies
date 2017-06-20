@@ -13,7 +13,7 @@ export const UPDATE_GROUP_NAME = "UPDATE_GROUP_NAME"
 export const UPDATE_SNIPPET = "UPDATE_SNIPPET"
 
 // Group
-export const CREATE_GROUP = "CREATE_GROUP"
+export const UPDATE_GROUPS = "UPDATE_GROUPS"
 
 // Local
 export const SAVE_TO_LOCAL = "SAVE_TO_LOCAL"

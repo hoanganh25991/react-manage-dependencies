@@ -12,7 +12,7 @@ const loadState = () => {
   let stateJson = localStorage.getItem(c.LOCAL_KEY)
   try {
     let state = JSON.parse(stateJson)
-    let isEmpty = Object.keys(state).length == 0
+    let isEmpty = Object.keys(state).length === 0
     return isEmpty ? initalState : state
   } catch (err) {
     return initalState
@@ -48,7 +48,7 @@ export default (state = initalState, action) => {
       let { snippet } = action
       return { ...state, snippet }
     }
-    case c.CREATE_GROUP: {
+    case c.UPDATE_GROUPS: {
       // Get out current group info
       let { groupName, packageSelected, snippet } = state
       let { groups: currGroups } = state

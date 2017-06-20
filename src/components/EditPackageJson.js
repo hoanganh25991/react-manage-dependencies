@@ -1,16 +1,35 @@
+// @flow
 import React from "react"
 import * as t from "../styles"
 import CodeMirror from "react-codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/mode/javascript/javascript"
 
+type Props = {
+  packageJson: string,
+  packageSelected: Object,
+  actionUpdatePackageJson: Function,
+  actionUpdatePackageSelected: Function
+}
+
+type State = {
+  mode: string
+}
+
 export default class EditPackageJson extends React.Component {
-  constructor(props) {
+  props: Props
+  state: State
+
+  static defaultProps = {
+    packageSelected: null
+  }
+
+  constructor(props: Props) {
     super(props)
     this.state = { mode: "view" }
   }
 
-  loadPickUp = packageJson => {
+  loadPickUp = (packageJson: string) => {
     // As type check, packageSelected can be any thing
     // Assign it as obj
     let { packageSelected = {} } = this.props
@@ -76,7 +95,7 @@ export default class EditPackageJson extends React.Component {
     }
   }
 
-  togglePickWholeLevel1 = level1 => () => {
+  togglePickWholeLevel1 = (level1: Object) => {
     let { packageSelected: curr = {}, actionUpdatePackageSelected } = this.props
     // Check if level1 already selected
     // let {obj: [level1Key]} = level1;
@@ -99,7 +118,7 @@ export default class EditPackageJson extends React.Component {
     actionUpdatePackageSelected({ packageSelected })
   }
 
-  togglePickUpLevel2 = (level1Key, level2) => () => {
+  togglePickUpLevel2 = (level1Key: string, level2: Object) => {
     let { packageSelected: curr = {}, actionUpdatePackageSelected } = this.props
     let currLevel1 = curr[level1Key] || {}
     // Check if level2 exist
@@ -121,7 +140,7 @@ export default class EditPackageJson extends React.Component {
       level1 = { ...currLevel1, ...level2 }
     }
 
-    let isLevel1Empty = Object.keys(level1).length == 0
+    let isLevel1Empty = Object.keys(level1).length === 0
 
     let packageSelected
 
@@ -151,10 +170,15 @@ export default class EditPackageJson extends React.Component {
     actionUpdatePackageSelected({})
   }
 
-  updateCodeMirror = newCode => {
+  updateCodeMirror = (newCode: string) => {
     let packageJson = newCode
     let { actionUpdatePackageJson } = this.props
     actionUpdatePackageJson({ packageJson })
+  }
+
+  testTypeCheck = () => {
+    let { actionUpdatePackageSelected } = this.props
+    actionUpdatePackageSelected({ packageSelected: null })
   }
 
   render() {
@@ -165,6 +189,7 @@ export default class EditPackageJson extends React.Component {
       <div>
         <button onClick={this.toggleViewMode}>{"switch view"}</button>
         <button onClick={this.resetSelected}>{"reset selected"}</button>
+        <button onClick={this.testTypeCheck}>{"test type check"}</button>
         <div style={{ ...t.flexRow }}>
           {isViewMode
             ? <div style={{ ...t.flex1 }}>

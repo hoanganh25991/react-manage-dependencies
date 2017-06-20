@@ -1,3 +1,4 @@
+// @flow
 import { connect } from "react-redux"
 import CreateGroup from "../components/CreateGroup"
 import { actionUpdatePackageJson, actionUpdateGroupName, actionUpdateSnippet, actionCreateGroup } from "../actions"

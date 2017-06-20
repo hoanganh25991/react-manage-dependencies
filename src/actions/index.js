@@ -16,7 +16,7 @@ export const actionSaveToLocal = () => ({ type: c.SAVE_TO_LOCAL })
 
 export const actionCreateGroup = () => {
   return dispatch => {
-    dispatch({ type: c.CREATE_GROUP })
+    dispatch({ type: c.UPDATE_GROUPS })
     dispatch(actionSaveToLocal())
   }
 }

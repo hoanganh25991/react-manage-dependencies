@@ -21,3 +21,6 @@ export const LOCAL_KEY = "react-manage-dependencies"
 
 // Move
 export const GO_TO_HOME = "GO_TO_HOME"
+
+// History
+export const STORE_HISTORY = "STORE_HISTORY"

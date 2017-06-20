@@ -22,6 +22,10 @@ const loadState = () => {
 
 export default (state = initalState, action) => {
   switch (action.type) {
+    case c.STORE_HISTORY: {
+      let { history } = action
+      return { ...state, history }
+    }
     case c.LOAD_DATABASE: {
       console.log("load state")
       return loadState()
@@ -66,7 +70,10 @@ export default (state = initalState, action) => {
       return state
     }
     case c.GO_TO_HOME: {
-      history.push("")
+      let { history } = state
+      if (history) {
+        history.push("/")
+      }
       return state
     }
     default:

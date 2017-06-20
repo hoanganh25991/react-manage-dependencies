@@ -24,3 +24,5 @@ export const actionCreateGroup = () => {
     dispatch(actionGoToHome())
   }
 }
+
+export const actionStorHistory = ({ history }) => ({ type: c.STORE_HISTORY, history })

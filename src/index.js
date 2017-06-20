@@ -1,6 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import HoiApp from "./containers/HoiApp"
+
+import HoiCreateGroup from "./containers/HoiCreateGroup"
+import HoiRouter from "./containers/HoiRouter"
 import registerServiceWorker from "./registerServiceWorker"
 
 import { Provider } from "react-redux"
@@ -8,8 +10,7 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import thunkMiddleware from "redux-thunk"
 import { createStore, applyMiddleware } from "redux"
 
-import { BrowserRouter, Route, Link } from "react-router-dom"
-import { push } from "react-router-dom"
+import { Route, Link } from "react-router-dom"
 
 import reducers from "./reducers"
 
@@ -19,7 +20,7 @@ const Home = () => <div>Home</div>
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HoiRouter>
       <div>
         <ul>
           <li><Link to="/">Home</Link></li>
@@ -27,9 +28,9 @@ ReactDOM.render(
         </ul>
         <hr />
         <Route exact path="/" component={Home} />
-        <Route path="/create-group" component={HoiApp} />
+        <Route exact path="/create-group" component={HoiCreateGroup} />
       </div>
-    </BrowserRouter>
+    </HoiRouter>
   </Provider>,
   document.getElementById("root")
 )

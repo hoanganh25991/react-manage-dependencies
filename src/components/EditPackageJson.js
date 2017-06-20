@@ -28,7 +28,7 @@ export default class EditPackageJson extends React.Component {
 
             if (isStr) {
               return (
-                <div {...{ level1Key }}>
+                <div {...{ key: level1Key }}>
                   <input
                     type="checkbox"
                     checked={chosen}
@@ -40,7 +40,7 @@ export default class EditPackageJson extends React.Component {
             }
 
             return (
-              <div {...{ level1Key }}>
+              <div {...{ key: level1Key }}>
                 <div>
                   <input
                     type="checkbox"
@@ -76,24 +76,30 @@ export default class EditPackageJson extends React.Component {
     }
   }
 
-  togglePickWholeLevel1 = ({ level1 }) => () => {
-    let { packageSelected: curr = {}, actionUpdatePackagedSelected } = this.props
+  togglePickWholeLevel1 = level1 => () => {
+    let { packageSelected: curr = {}, actionUpdatePackageSelected } = this.props
     let packageSelected = { ...curr, ...level1 }
-    actionUpdatePackagedSelected(packageSelected)
+    actionUpdatePackageSelected({ packageSelected })
   }
 
   togglePickUpLevel2 = (level1Key, level2) => () => {
-    let { packageSelected: curr = {}, actionUpdatePackagedSelected } = this.state
+    let { packageSelected: curr = {}, actionUpdatePackageSelected } = this.props
     let currLevel1 = curr[level1Key] || {}
     let level1 = { ...currLevel1, ...level2 }
     let packageSelected = { ...curr, ...{ [level1Key]: level1 } }
-    actionUpdatePackagedSelected(packageSelected)
+    actionUpdatePackageSelected({ packageSelected })
   }
 
   toggleViewMode = () => {
     let { mode: currMode } = this.state
     let mode = currMode === "view" ? "edit" : "view"
     this.setState({ mode })
+  }
+
+  updateCodeMirror = newCode => {
+    let packageJson = newCode
+    let { actionUpdatePackageJson } = this.props
+    actionUpdatePackageJson({ packageJson })
   }
 
   render() {

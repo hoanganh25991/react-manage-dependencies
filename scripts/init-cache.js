@@ -1,5 +1,5 @@
-const fs = require("fs")
-const path = require("path")
+import fs from "fs"
+import path from "path"
 
 const stateJsonFile = path.join(__dirname, "/../src/cache/state.json")
 

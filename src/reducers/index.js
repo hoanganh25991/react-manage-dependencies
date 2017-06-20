@@ -1,13 +1,15 @@
 import * as c from "../actions/actionTypes"
 import state from "../cache/state.json"
 
-const initalState = {}
+const initalState = {
+  groupName: "",
+  packageJson: "",
+  packageSelected: {}
+}
 
 const loadState = () => {
-  // Find state json file in cache
-  //   let state = JSON.parse(state);
-  //   return state;
-  return state
+  let isEmptyObj = Object.keys(state).length == 0
+  return isEmptyObj ? initalState : state
 }
 
 export default (state = initalState, action) => {
@@ -17,10 +19,6 @@ export default (state = initalState, action) => {
       return loadState()
     }
     // Handle package json
-    case c.IMPORT_PACKAGE_JSON: {
-      let { packageJson } = action
-      return { ...state, packageJson }
-    }
     case c.UPDATE_PACKAGE_JSON: {
       let { packageJson } = action
       return { ...state, packageJson }

@@ -1,10 +1,8 @@
 import React, { Component } from "react"
 // import logo from "./logo.svg"
 // import "./HoiApp.css"
-import DependencyList from "./DependencyList"
-import HoiPanel from "../containers/HoiPanel"
-import CodeEditor from "./CodeEditor"
-import CreateGroup from "./CreateGroup"
+import HoiDependencyList from "../containers/HoiDependencyList"
+import HoiCreateGroup from "../containers/HoiCreateGroup"
 
 class App extends Component {
   componentDidMount() {
@@ -15,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <DependencyList />
-        <CreateGroup />
+        <HoiDependencyList />
+        <HoiCreateGroup />
       </div>
     )
   }

@@ -3,7 +3,12 @@ import App from "../components/App"
 import { actionLoadDatabase } from "../actions"
 
 const mapStateToProps = null
-const mapActionToProps = dispatch => ({
+
+type PropsAction = {
+  actionLoadDatabase: Function
+}
+
+const mapActionToProps = (dispatch): PropsAction => ({
   actionLoadDatabase: () => dispatch(actionLoadDatabase())
 })
 

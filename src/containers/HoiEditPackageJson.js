@@ -23,7 +23,7 @@ const mapStateToProps = (state): PropsState => {
 
 // O day nen co type check
 // Nhu vay minh co the kiem soat la
-// cai gi map vao thang EditPackageJson phai co nhu vay
+// cai gi map vao thang HoiEditPackageJson phai co nhu vay
 // neu khong thu khong cho
 type PropsAction = {
   actionUpdatePackageJson: Function,
@@ -32,7 +32,7 @@ type PropsAction = {
 
 const mapActionToProps = (dispatch): PropsAction => ({
   actionUpdatePackageJson: ({ packageJson }) => dispatch(actionUpdatePackageJson({ packageJson })),
-  actionUpdatePackageSelected: ({ packageJson }) => dispatch(actionUpdatePackageSelected({ packageJson }))
+  actionUpdatePackageSelected: ({ packageSelected }) => dispatch(actionUpdatePackageSelected({ packageSelected }))
 })
 
 export default connect(mapStateToProps, mapActionToProps)(EditPackageJson)

@@ -1,19 +1,20 @@
 // @flow
-import { connect } from "react-redux"
 import React from "react"
-import createHistory from "history/createBrowserHistory"
+import { connect } from "react-redux"
 import { Router } from "react-router"
+import createHistory from "history/createBrowserHistory"
 import { actionStorHistory } from "../actions"
 
 /**
- * The public API for a <Router> that uses HTML5 history.
+ * Self implement BrowserRoute
+ * Store history then share it with state
  */
 class BrowserRouter extends React.Component {
   history = createHistory(this.props)
 
   componentDidMount() {
-    let { actionStoreHistory } = this.props
     let { history } = this
+    let { actionStoreHistory } = this.props
     actionStoreHistory({ history })
   }
 
@@ -22,6 +23,9 @@ class BrowserRouter extends React.Component {
   }
 }
 
+/**
+ * Container Component
+ */
 const mapStateToProps = null
 
 type PropsAction = {

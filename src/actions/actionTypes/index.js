@@ -3,3 +3,6 @@ export const LOAD_DATABASE = "LOAD_DATABASE"
 // Package json
 export const IMPORT_PACKAGE_JSON = "IMPORT_PACKAGE_JSON"
 export const UPDATE_PACKAGE_JSON = "UPDATE_PACKAGE_JSON"
+
+// Package selected
+export const UPDATE_PACKAGE_SELECTED = "UPDATE_PACKAGE_SELECTED"

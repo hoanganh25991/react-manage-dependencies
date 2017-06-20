@@ -7,50 +7,61 @@ import "codemirror/mode/javascript/javascript"
 export default class EditPackageJson extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      packageSelected: {},
-      mode: "view"
-    }
+    this.state = { mode: "view" }
   }
 
   loadPickUp = packageJson => {
-    let { packageSelected } = this.state
+    // As type check, packageSelected can be any thing
+    // Assign it as obj
+    let { packageSelected = {} } = this.props
     try {
       let packageObj = JSON.parse(packageJson)
-      let packageKeys = Object.keys(packageObj)
 
       return (
         <div style={{ ...t.height300, ...t.scrollY, ...t.widthFull }}>
-          {packageKeys.map(key => {
-            let val = packageObj[key]
-            let isStr = typeof val === "string"
-            let chosen = Boolean(packageSelected[key])
+          {Object.keys(packageObj).map(level1Key => {
+            let level1Val = packageObj[level1Key]
+
+            let isStr = typeof level1Val === "string"
+
+            let chosen = Boolean(packageSelected[level1Key])
+
             if (isStr) {
               return (
-                <div {...{ key }}>
-                  <input type="checkbox" checked={chosen} onClick={this.togglePickUp({ [key]: packageObj[key] })} />
-                  <b>{key}</b> {val}
+                <div {...{ level1Key }}>
+                  <input
+                    type="checkbox"
+                    checked={chosen}
+                    onClick={this.togglePickWholeLevel1({ [level1Key]: packageObj[level1Key] })}
+                  />
+                  <b>{level1Key}</b> {level1Val}
                 </div>
               )
             }
 
             return (
-              <div {...{ key }}>
+              <div {...{ level1Key }}>
                 <div>
-                  <input type="checkbox" checked={chosen} onClick={this.togglePickUp({ [key]: packageObj[key] })} />
-                  <b>{key}</b>
+                  <input
+                    type="checkbox"
+                    checked={chosen}
+                    onClick={this.togglePickWholeLevel1({ [level1Key]: packageObj[level1Key] })}
+                  />
+                  <b>{level1Key}</b>
                 </div>
                 <ul>
-                  {Object.keys(val).map(valKey => {
-                    let chosen = Boolean(packageSelected[key] && packageSelected[key][valKey])
+                  {Object.keys(level1Val).map(level2Key => {
+                    let chosen = Boolean(packageSelected[level1Key] && packageSelected[level1Key][level2Key])
                     return (
-                      <div {...{ key: valKey }}>
+                      <div {...{ key: level2Key }}>
                         <input
                           type="checkbox"
                           checked={chosen}
-                          onClick={this.togglePickUp({ [key]: { [valKey]: packageObj[key][valKey] } }, key)}
+                          onClick={this.togglePickUpLevel2(level1Key, {
+                            [level2Key]: packageObj[level1Key][level2Key]
+                          })}
                         />
-                        <b>{valKey}</b> {val[valKey]}
+                        <b>{level2Key}</b> {level1Val[level2Key]}
                       </div>
                     )
                   })}
@@ -65,17 +76,18 @@ export default class EditPackageJson extends React.Component {
     }
   }
 
-  togglePickUp = (obj, key) => () => {
-    let { packageSelected: curr } = this.state
-    if (key) {
-      let newDeepObj = obj[key]
-      let currDeepObj = curr[key]
-      let deepObj = { ...currDeepObj, ...newDeepObj }
-      obj = { [key]: deepObj }
-    }
-    let packageSelected = { ...curr, ...obj }
-    console.log(packageSelected)
-    this.setState({ packageSelected })
+  togglePickWholeLevel1 = ({ level1 }) => () => {
+    let { packageSelected: curr = {}, actionUpdatePackagedSelected } = this.props
+    let packageSelected = { ...curr, ...level1 }
+    actionUpdatePackagedSelected(packageSelected)
+  }
+
+  togglePickUpLevel2 = (level1Key, level2) => () => {
+    let { packageSelected: curr = {}, actionUpdatePackagedSelected } = this.state
+    let currLevel1 = curr[level1Key] || {}
+    let level1 = { ...currLevel1, ...level2 }
+    let packageSelected = { ...curr, ...{ [level1Key]: level1 } }
+    actionUpdatePackagedSelected(packageSelected)
   }
 
   toggleViewMode = () => {

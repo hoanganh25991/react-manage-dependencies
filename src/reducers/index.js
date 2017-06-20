@@ -16,6 +16,7 @@ export default (state = initalState, action) => {
       console.log("load state")
       return loadState()
     }
+    // Handle package json
     case c.IMPORT_PACKAGE_JSON: {
       let { packageJson } = action
       return { ...state, packageJson }
@@ -23,6 +24,12 @@ export default (state = initalState, action) => {
     case c.UPDATE_PACKAGE_JSON: {
       let { packageJson } = action
       return { ...state, packageJson }
+    }
+
+    // Handle package selected
+    case c.UPDATE_PACKAGE_SELECTED: {
+      let { packageSelected } = action
+      return { ...state, packageSelected }
     }
     default:
       return state

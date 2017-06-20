@@ -20,10 +20,6 @@ export default class EditPackageJson extends React.Component {
   props: Props
   state: State
 
-  static defaultProps = {
-    packageSelected: null
-  }
-
   constructor(props: Props) {
     super(props)
     this.state = { mode: "view" }

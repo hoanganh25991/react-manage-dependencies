@@ -5,8 +5,8 @@ import { actionUpdatePackageJson, actionUpdateGroupName, actionUpdateSnippet, ac
 import { getPackageGroupName, getPackageJson } from "../selectors"
 
 type PropsState = {
-  groupName: String,
-  packageJson: String
+  groupName: string,
+  packageJson: string
 }
 
 const mapStateToProps = (state): PropsState => {
@@ -21,7 +21,8 @@ const mapStateToProps = (state): PropsState => {
 type PropsAction = {
   actionUpdatePackageJson: Function,
   actionUpdateGroupName: Function,
-  actionUpdateSnippet: Function
+  actionUpdateSnippet: Function,
+  actionCreateGroup: Function
 }
 
 const mapActionToProps = (dispatch): PropsAction => ({

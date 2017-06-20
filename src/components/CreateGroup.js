@@ -1,22 +1,49 @@
+// @flow
 import React from "react"
 import * as t from "../styles"
 import HoiEditPackageJson from "../containers/HoiEditPackageJson"
 import CodeMirror from "react-codemirror"
 import "codemirror/lib/codemirror.css"
 
+type Props = {
+  groupName: string,
+  packageJson: string,
+  actionUpdatePackageJson: Function,
+  actionUpdateGroupName: Function,
+  actionUpdateSnippet: Function,
+  actionCreateGroup: Function
+}
+
+type State = {}
+
+type Event = {
+  target: {
+    value: string
+  }
+}
+
+type FileEvent = {
+  target: {
+    files: Array<Blob>
+  }
+}
+
 export default class CreateGroup extends React.Component {
-  constructor(props) {
+  props: Props
+  state: State
+
+  constructor(props: Props) {
     super(props)
     this.state = {}
   }
 
-  updateGroupName = e => {
+  updateGroupName = (e: Event) => {
     let groupName = e.target.value
     let { actionUpdateGroupName } = this.props
     actionUpdateGroupName({ groupName })
   }
 
-  updatePackageJson = e => {
+  updatePackageJson = (e: FileEvent) => {
     let file = e.target.files[0]
     if (file) {
       let packageJsonPromise = new Promise(resolve => {
@@ -32,7 +59,7 @@ export default class CreateGroup extends React.Component {
     }
   }
 
-  updateSnippet = snippet => {
+  updateSnippet = (snippet: string) => {
     let { actionUpdateSnippet } = this.props
     actionUpdateSnippet({ snippet })
   }
@@ -43,7 +70,7 @@ export default class CreateGroup extends React.Component {
   }
 
   render() {
-    let { groupName, packageJson } = this.state
+    let { groupName, packageJson } = this.props
     return (
       <div style={t.flexColumn}>
         <h1>Create group</h1>

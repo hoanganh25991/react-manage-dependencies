@@ -8,8 +8,8 @@ import { getPackageJson, getPackageSelected } from "../selectors"
 //
 //
 type PropsState = {
-  packageJson: any,
-  packageSelected: any
+  packageJson: string,
+  packageSelected: Object
 }
 
 const mapStateToProps = (state): PropsState => {

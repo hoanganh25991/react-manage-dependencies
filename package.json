@@ -19,7 +19,6 @@
   "devDependencies": {
     "@types/react-addons-update": "^0.14.17",
     "flow-bin": "^0.48.0",
-    "gh-pages": "^1.0.0",
     "husky": "^0.13.4",
     "lint-staged": "^4.0.0",
     "prettier": "^1.4.4",
@@ -28,14 +27,12 @@
   },
   "scripts": {
     "react-start": "react-scripts start",
+    "precommit": "lint-staged",
+    "flow": "flow",
     "start": "npm-run-all -s react-start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "precommit": "lint-staged",
-    "flow": "flow",
-    "gh-pages-publish": "gh-pages -d build",
-    "deploy": "npm-run-all -s build gh-pages-publish"
+    "eject": "react-scripts eject"
   },
   "lint-staged": {
     "*.js": [

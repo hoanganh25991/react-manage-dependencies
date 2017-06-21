@@ -1,5 +1,4 @@
 import * as c from "../actions/actionTypes"
-import history from "./history"
 
 const initalState = {
   groupName: "",

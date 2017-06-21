@@ -54,10 +54,10 @@ export default class EditPackageJson extends React.Component {
         <button onClick={this.resetSelected}>{"reset selected"}</button>
         <div style={{ ...t.flexRow }}>
           {isViewMode
-            ? <div style={{ ...t.flex1, ...t.unSelect, ...t.devBorder }}>
+            ? <div style={{ ...t.flex1, ...t.unSelect, ...t.devBorder, ...t.height300 }}>
                 <DependencyPickUp {...{ packageJson, packageSelected, actionUpdatePackageSelected }} />
               </div>
-            : <div style={{ ...t.flex1, ...t.flexColumn, ...t.devBorder }}>
+            : <div style={{ ...t.flex1, ...t.flexColumn, ...t.devBorder, ...t.height300 }}>
                 <CodeMirror
                   value={packageJson}
                   options={{ lineNumbers: true, mode: "javascript" }}

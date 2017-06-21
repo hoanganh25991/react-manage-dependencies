@@ -3,20 +3,23 @@ sudo: required
 node_js: stable
 cache:
   directories:
-    - node_modules
+  - node_modules
 script:
-  - yarn run test
+- yarn run test
 branches:
   except:
-    - gh-pages
+  - gh-pages
 before_deploy:
-  - yarn run build
+- yarn run build
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  github_token: "$GITHUB_TOKEN"
   local_dir: build/
   target_branch: gh-pages
   on:
     branch: master
 dist: trusty
+notifications:
+  slack:
+    secure: nOybAikdszukhCfozPzyzW2sN0cyOX3nZ1B3uHgYcvtleHUDI9mW2KiLz6mFVZ3WJjaj5dpVif99PbTDynF8DdTvSEzhNsyby+fNtYdbJ5DnCl8c1NSGEod+ul1AL8x+xXFYhj2M0QJaBcn1WlbmWCNluRZmb1C4abh/uGAC7FpSjqZ1CTt2rWTJa7kepQ80Kv8rBDBA93e7Wfj0NA6zEw36Cpfk8VF+ORmx276fogH6gJlfItkPMLjuKl17FmsxJEtS2Uq4HdQoWGkt2Zkt/rCLFWZ4o0MAYQICrlE3Zb33JuuAwPjoJxmYKJ83Yuz2WZ2jfb6ZDOpE4SOBdqP9dwfYeJXRBPksSozQaIEF8eZC3YT6hRe0BqdsFxPvNUURXrCuhjoHncKV4ZWMK4LL12rKXD1CGylZKE3m4WIWnphmS410keXOypYbSCOBvOL2uUGk4D1Ix2FalJjXhv2BrsIrLiB6zC08xKpGM9LYFvqEL43YFkQNAerqmLGqXL5/Wi9QT/AtOfwNTrTGC+kIQuiPpG2oXGj9gYQ8Imj0oPLMxnbYaLcCGlvYLBtdCK3uar2MUw6adBpUjNVzfwKp9qHLfza0UHzJIQUqjmzNtXYEZGiCf1NU7UNsOm8vgglUForhublhJAt/TiImyMitJdeomu6ocmIJajvUy6VqoTk=

@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/react-addons-update": "^0.14.17",
     "flow-bin": "^0.48.0",
+    "gh-pages": "^1.0.0",
     "husky": "^0.13.4",
     "lint-staged": "^4.0.0",
     "prettier": "^1.4.4",

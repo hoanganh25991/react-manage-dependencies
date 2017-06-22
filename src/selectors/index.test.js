@@ -7,3 +7,6 @@ it("sums numbers", () => {
     expect(typeof selectors[funcName]).toEqual("function")
   })
 })
+
+// code coverage test on code written
+// was it look good in some points duplication, deep scope, ...

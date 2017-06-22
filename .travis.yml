@@ -5,12 +5,14 @@ cache:
   directories:
   - node_modules
 script:
-- yarn run test
+- yarn flow
+- yarn test
+- yarn test -- --coverage
 branches:
   except:
   - gh-pages
 before_deploy:
-- yarn run build
+- yarn build
 deploy:
   provider: pages
   skip_cleanup: true

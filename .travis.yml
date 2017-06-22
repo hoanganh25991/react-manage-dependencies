@@ -36,4 +36,6 @@ notifications:
     on_failure: always
 dist: trusty
 group: edge  # Add this
+## try with cctray, travis api show baged on windows
+## travis is greate, BUTTTT many tool look like 50 years ago
 
